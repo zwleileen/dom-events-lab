@@ -1,15 +1,45 @@
 const display = document.querySelector(".display");
 const numberButtons = document.querySelectorAll(".button.number");
 const operatorButtons = document.querySelectorAll(".button.operator");
+const equalsButton = document.querySelector(".button.equals");
 
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 
+function clear() {
+  firstNumber = "";
+  operator = "";
+  secondNumber = "";
+  display.textContent = "";
+}
+
+function calculate() {
+  let result;
+  switch (operator) {
+    case "+":
+      result = Number(firstNumber) + Number(secondNumber);
+      break;
+    case "-":
+      result = Number(firstNumber) - Number(secondNumber);
+      break;
+    case "*":
+      result = Number(firstNumber) * Number(secondNumber);
+      break;
+    case "/":
+      result = Number(firstNumber) / Number(secondNumber);
+      break;
+  }
+  display.textContent = result;
+  firstNumber = result.toString(); //converts firstNumber back to string
+  operator = "";
+  secondNumber = "";
+}
+
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (button.textContent === "C") {
-      display.textContent = "";
+      clear(); //notes: resets everything to its starting state
     } else {
       operator = button.textContent;
       display.textContent = operator;
@@ -19,19 +49,17 @@ operatorButtons.forEach((button) => {
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (operator === "") {
+    if (operator === "" || operator === "=") {
       firstNumber = button.textContent;
       display.textContent = firstNumber;
     } else {
       secondNumber = button.textContent;
-      calculate();
+      display.textContent = secondNumber;
     }
   });
 });
-function calculate() {
-  let result;
-  if (operator === "+") {
-    result = Number(firstNumber) + Number(secondNumber);
+equalsButton.addEventListener("click", () => {
+  if (firstNumber && operator && secondNumber) {
+    calculate();
   }
-  display.textContent = result;
-}
+});
