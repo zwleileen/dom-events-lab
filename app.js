@@ -7,6 +7,7 @@ let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 
+//notes: define clear function first
 const clear = () => {
   firstNumber = "";
   operator = "";
@@ -14,6 +15,30 @@ const clear = () => {
   display.textContent = "";
 };
 
+//notes: define calculate function
+const calculate = () => {
+  let result;
+  switch (operator) {
+    case "+":
+      result = Number(firstNumber) + Number(secondNumber);
+      break;
+    case "-":
+      result = Number(firstNumber) - Number(secondNumber);
+      break;
+    case "*":
+      result = Number(firstNumber) * Number(secondNumber);
+      break;
+    case "/":
+      result = Number(firstNumber) / Number(secondNumber);
+      break;
+  }
+  display.textContent = result;
+  firstNumber = result.toString(); //notes:converts firstNumber back to string because textContent works with strings
+  operator = ""; //notes:sets operator and secondNumber back to empty after returning the result
+  secondNumber = "";
+};
+
+//notes: then add event listeners
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (button.textContent === "C") {
@@ -41,25 +66,3 @@ equalsButton.addEventListener("click", () => {
     calculate();
   }
 });
-
-const calculate = () => {
-  let result;
-  switch (operator) {
-    case "+":
-      result = Number(firstNumber) + Number(secondNumber);
-      break;
-    case "-":
-      result = Number(firstNumber) - Number(secondNumber);
-      break;
-    case "*":
-      result = Number(firstNumber) * Number(secondNumber);
-      break;
-    case "/":
-      result = Number(firstNumber) / Number(secondNumber);
-      break;
-  }
-  display.textContent = result;
-  firstNumber = result.toString(); //notes:converts firstNumber back to string because textContent works with strings
-  operator = ""; //notes:sets operator and secondNumber back to empty after returning the result
-  secondNumber = "";
-};
