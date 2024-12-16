@@ -7,34 +7,12 @@ let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 
-function clear() {
+const clear = () => {
   firstNumber = "";
   operator = "";
   secondNumber = "";
   display.textContent = "";
-}
-
-function calculate() {
-  let result;
-  switch (operator) {
-    case "+":
-      result = Number(firstNumber) + Number(secondNumber);
-      break;
-    case "-":
-      result = Number(firstNumber) - Number(secondNumber);
-      break;
-    case "*":
-      result = Number(firstNumber) * Number(secondNumber);
-      break;
-    case "/":
-      result = Number(firstNumber) / Number(secondNumber);
-      break;
-  }
-  display.textContent = result;
-  firstNumber = result.toString(); //converts firstNumber back to string
-  operator = "";
-  secondNumber = "";
-}
+};
 
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -63,3 +41,25 @@ equalsButton.addEventListener("click", () => {
     calculate();
   }
 });
+
+const calculate = () => {
+  let result;
+  switch (operator) {
+    case "+":
+      result = Number(firstNumber) + Number(secondNumber);
+      break;
+    case "-":
+      result = Number(firstNumber) - Number(secondNumber);
+      break;
+    case "*":
+      result = Number(firstNumber) * Number(secondNumber);
+      break;
+    case "/":
+      result = Number(firstNumber) / Number(secondNumber);
+      break;
+  }
+  display.textContent = result;
+  firstNumber = result.toString(); //notes:converts firstNumber back to string because textContent works with strings
+  operator = ""; //notes:sets operator and secondNumber back to empty after returning the result
+  secondNumber = "";
+};
