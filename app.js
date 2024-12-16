@@ -1,29 +1,33 @@
-const buttons = document.querySelectorAll(".button");
-
-// numberButtons.forEach((numberButton) => {
-//   //   numberButton.textContent = number; //note: sets visible text in number button
-//   //   numberButton.dataset.number = number; //note: sets a data-number attribute in HTML of the number button
-// });
-
-// const secondButton = numberButtons[1];
-// console.log(secondButton.textContent);
-
 const display = document.querySelector(".display");
-buttons.forEach((button) => {
+const numberButtons = document.querySelectorAll(".button.number");
+const operatorButtons = document.querySelectorAll(".button.operator");
+
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
+
+operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (button.textContent === "C") {
-      display.textContent = "0";
+      display.textContent = "";
     } else {
-      display.textContent = button.textContent;
+      operator = button.textContent;
+      display.textContent = operator;
     }
   });
 });
 
-const numberButtons = document.querySelectorAll(".button.number");
-const operatorButtons = document.querySelectorAll("button.operator");
-
-let sum = 0;
-// console.log(numberButtons[1].textContent);
-numberButtons.addEventListener("click", () => {
-  sum += Number(numberButtons); //convert button's textcontent to a number
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (operator === "") {
+      firstNumber = button.textContent;
+      display.textContent = firstNumber;
+    } else {
+      secondNumber = button.textContent;
+      calculate();
+    }
+  });
 });
+function calculate() {
+  result = Number(firstNumber) + Number(secondNumber);
+}
