@@ -29,5 +29,9 @@ numberButtons.forEach((button) => {
   });
 });
 function calculate() {
-  result = Number(firstNumber) + Number(secondNumber);
+  let result;
+  if (operator === "+") {
+    result = Number(firstNumber) + Number(secondNumber);
+  }
+  display.textContent = result;
 }
