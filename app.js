@@ -1,9 +1,10 @@
-/*-------------------------------- Constants --------------------------------*/
+const numberButtons = document.querySelectorAll(".button.number");
 
-/*-------------------------------- Variables --------------------------------*/
+numberButtons.forEach((numberbutton, index) => {
+  const number = index + 1;
+  numberbutton.textContent = number; //note: sets visible text in number button
+  numberbutton.dataset.number = number; //note: sets a data-number attribute in HTML of the number button
+});
 
-/*------------------------ Cached Element References ------------------------*/
-
-/*----------------------------- Event Listeners -----------------------------*/
-
-/*-------------------------------- Functions --------------------------------*/
+const secondButton = numberButtons[1];
+console.log(secondButton.textContent);
