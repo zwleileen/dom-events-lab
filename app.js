@@ -53,7 +53,7 @@ operatorButtons.forEach((button) => {
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (operator === "" || operator === "=") {
-      firstNumber += button.textContent; //+= appends digit to firstNumber instead of replacing it
+      firstNumber += button.textContent; //+= appends string digit to firstNumber instead of replacing it
       display.textContent = firstNumber;
     } else {
       secondNumber += button.textContent;
