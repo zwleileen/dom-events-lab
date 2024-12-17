@@ -53,10 +53,10 @@ operatorButtons.forEach((button) => {
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (operator === "" || operator === "=") {
-      firstNumber = button.textContent;
+      firstNumber += button.textContent; //+= appends digit to firstNumber instead of replacing it
       display.textContent = firstNumber;
     } else {
-      secondNumber = button.textContent;
+      secondNumber += button.textContent;
       display.textContent = secondNumber;
     }
   });
